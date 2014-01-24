@@ -1,0 +1,59 @@
+article:not(.nologo) {
+	background: white url(logo/horizontal.png) bottom right no-repeat;
+}
+
+article.biglogo {
+	background: white url(logo/bluppen_full.png) center center no-repeat;
+}
+
+iframe {
+	height: 550px;
+}
+
+h3 + iframe {
+	height: 500px;
+}
+
+article h2 {
+    position: static;
+    bottom: auto;
+    font-size: 40px;
+}
+
+.contact_me a, .contact_me a:visited, .slides > article.problem .contact_me .icon{
+	color: black;
+	font-size: 75%;
+}
+
+.pink {
+	color: rgb(244, 58, 109); /* this is our official pink color */
+}
+
+a.pink:visited {
+    color: rgb(244, 58, 109); /* this is our official pink color */
+}
+
+ul {
+    list-style: none;
+    padding:0;
+    margin:0;
+}
+
+ul > li {
+    padding-left: 1em;
+}
+
+ul > li:before {
+    content: "• ";
+    color: rgb(244, 58, 109); /* this is our official pink color */
+}
+
+ul > li.center-dot {
+    position: relative;
+}
+
+ul > li.center-dot:before {
+    height: 100%;
+    top: 50%;
+    margin-top: -15px;
+}

@@ -1,0 +1,56 @@
+<h1 id="chromeextensionsworkshopstep2">Chrome Extensions Workshop - Step 2</h1>
+
+<p>You can implement this step using:
+    - background page (which is a bit simpler)
+    - or event page (which is more ambitious).</p>
+
+<h2 id="todobackgroundpage">TODO (Background page)</h2>
+
+<ol>
+    <li>Create <code>background.js</code> file and set it as your background script using <code>background</code> field in the manifest. If you decide later on that you want to use some kind of a library (e.g. jQuery) on your background page, just mention it in the manifest file.</li>
+    <li>you can debug background pages by clicking "background page" on the "Inspect views" list on <code>chrome://extensions/</code> page
+        <br /><img src='http://i.imgur.com/SoM1ROy.png' alt='Inspect views: background page'/><br /></li>
+    <li>Add "storage" permission to your extension using <code>permissions</code> field in the manifest.</li>
+    <li>Implement these changes:</li>
+    <li>use <code>setInterval</code> on your background page to download pollution data every 60 minutes. While testing, you can set this interval to 30 seconds.</li>
+    <li>store downloaded data using <a href="http://developer.chrome.com/extensions/storage.html">storage API</a> (<code>chrome.storage.local.set()</code>)</li>
+    <li>remove AJAX request from the popup and use data from the storage instead (<code>chrome.storage.local.get()</code>)</li>
+    <li>use <code>chrome.browserAction.setBadgeText</code> and <code>chrome.browserAction.setBadgeBackgroundColor</code> on your background page to show pollution information on the browser action button
+        <br /><img src="http://i.imgur.com/X3UzJtM.png" alt="Browser action button with a badge"/><br /></li>
+    <li>Done! If you have extra time left you can polish your extension. Check list of possible improvements below.</li>
+</ol>
+
+<h2 id="todoeventpage">TODO (Event page)</h2>
+
+<ol>
+    <li>Create <code>background.js</code> file and set it as your background script using <code>background</code> field in the manifest. Make sure to set <code>persistent</code> to <code>false</code> so that Chrome knows that this page doesn't need to run all the time. If you decide later on that you want to use some kind of a library (e.g. jQuery) on your event page, just mention it in the manifest file.</li>
+    <li>you can debug event (and background) pages by clicking "background page" on the "Inspect views" list on <code>chrome://extensions/</code> page
+        <br /><img src='http://i.imgur.com/SoM1ROy.png' alt='Inspect views: background page'/><br /></li>
+    <li>Add "storage" and "alarms" permission to your extension using <code>permissions</code> field in the manifest.</li>
+    <li>Implement these changes:</li>
+    <li>use alarm API on your event page to download pollution data every 60 minutes (<code>chrome.alarms.create()</code> and <code>chrome.alarms.onAlarm.addListener()</code>). While testing, you can set this interval to 30 seconds.</li>
+    <li>PRO TIP: <code>chrome.alarms.create()</code> shouldn't be called every time event page is loaded because it resets the timer. Check <a href="http://developer.chrome.com/extensions/runtime.html#event-onInstalled">onInstalled</a> event. Listeners, on the other hand, <em>should</em> be created every time event page is loaded.</li>
+    <li>store downloaded data using <a href="http://developer.chrome.com/extensions/storage.html">storage API</a> (<code>chrome.storage.local.set()</code>)</li>
+    <li>remove AJAX request from the popup and use data from the storage instead (<code>chrome.storage.local.get()</code>)</li>
+    <li>use <code>chrome.browserAction.setBadgeText</code> and <code>chrome.browserAction.setBadgeBackgroundColor</code> (<a href="http://developer.chrome.com/extensions/browserAction.html#method-setBadgeText">*</a>) on your event page to show pollution information on the browser action button
+        <br /><img src="http://i.imgur.com/X3UzJtM.png" alt="Browser action button with a badge"/><br /></li>
+    <li>Done! If you have extra time left you can polish your extension. Check list of possible improvements below.</li>
+</ol>
+
+<h2 id="links">Links</h2>
+
+<ul>
+    <li><a href="http://developer.chrome.com/extensions/browserAction.html">Browser Action</a></li>
+    <li><a href="http://developer.chrome.com/extensions/manifest.html">Manifest File Format</a></li>
+    <li><a href="http://developer.chrome.com/extensions/background_pages.html">Background Pages</a></li>
+    <li><a href="http://developer.chrome.com/extensions/storage.html">Storage API</a></li>
+    <li><a href="http://developer.chrome.com/extensions/alarms.html">Alarms API</a></li>
+</ul>
+
+<h2 id="extratimeleft">Extra time left?</h2>
+
+<ul>
+    <li>Change text in the tooltip that appears when mouse is over the browser action button. By default this tooltip shows only extension name ("SmogKrk"), but you can dynamically (same as with badges) change it to something more useful ("SmogKrk - 1 pollutant exceeds the norms"). Use <code>chrome.browserAction.setTitle()</code>.</li>
+    <li>Show error message in the popup when there is no data in the storage.</li>
+    <li>You can change whole icon of the browser action button dynamically and even animate it (check <a href="http://developer.chrome.com/extensions/examples/extensions/gmail.zip">this</a> sample extension).</li>
+</ul>

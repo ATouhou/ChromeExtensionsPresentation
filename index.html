@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+
+<!--
+  Google HTML5 slide template
+
+  Authors: Luke Mahé (code)
+           Marcin Wichary (code and design)
+           
+           Dominic Mazzoni (browser compatibility)
+           Charles Chen (ChromeVox support)
+
+  URL: http://code.google.com/p/html5slides/
+
+  Making Waves template: Konrad Dzwinel
+  URL:
+-->
+
+<html>
+<head>
+    <title>Chrome Extensions Workshop</title>
+
+    <meta charset='utf-8'>
+
+    <!-- Main JS file from html5slides project, you should probably don't touch it -->
+    <script src="resources/libs/slides.js"></script>
+    <!-- jQuery - it's not required, if you don't need it - remove it -->
+    <script src="resources/libs/jquery.js"></script>
+
+    <!-- Main CSS file from html5slides project - again, don't touch this stuff -->
+    <link rel="stylesheet" href='resources/styles.css'>
+    <!-- Some nice icons - check them out: http://shoestrap.org/downloads/elusive-icons-webfont/ -->
+    <link rel="stylesheet" href="resources/elusive-webfont/css/elusive-webfont.css">
+    <!-- Making Waves specific styles -->
+    <link rel="stylesheet" href="resources/mw-template.css">
+    <link rel="stylesheet" href="resources/custom.css">
+</head>
+
+<body style='display: none'>
+
+<!-- This is main container, you can change presentation layout by changing layout-regular to layout-faux-widescreen or layout-widescreen.-->
+<section class='slides layout-regular'>
+
+    <!-- First slide with big MW logo -->
+    <article class='biglogo'></article>
+
+    <!-- Title slide -->
+    <article class="title_slide">
+        <h1>Chrome Extensions Workshop</h1>
+
+        <h2>pimp your browser <span class="pink">.</span></h2>
+
+        <p>
+            Konrad Dzwinel
+            <br/>
+            Jan 22, 2014
+        </p>
+    </article>
+
+    <article>
+        <h3>Agenda</h3>
+        <ul class="build">
+            <li>Chrome Extensions 101 <small>(15 min)</small></li>
+            <li>Workshop intro: <small>(10 min)</small>
+                <ul>
+                    <li>What are we going to build?</li>
+                    <li>How to work with the workshop materials?</li>
+                </ul>
+            </li>
+            <li>Workshop:
+                <ul class="build">
+                    <li>Explaining <span class="pink">&hellip;</span></li>
+                    <li>JavaScripting <span class="pink">!</span></li>
+                    <li><img src="resources/arrow.png" style="position: absolute;width: 90px;margin-left: -114px;margin-top: -100px;"></li>
+                </ul>
+            </li>
+        </ul>
+    </article>
+
+    <article id="exttypes">
+        <button class="back">&lt;</button>
+        <img src="resources/exttypes/1.png"/>
+        <script>
+            (function () {
+                var items = [2, 3, 4, 5, 6, 61, 7, 8, 9, 10];
+                var idx = 0;
+                $('#exttypes').on('click', 'img', function () {
+                    if (idx >= items.length) {
+                        nextSlide();
+                        return;
+                    }
+
+                    var $img = $('<img/>')
+                            .attr('src', 'resources/exttypes/' + items[idx] + '.png')
+                            .addClass('hidden');
+                    idx++;
+
+                    $(this).parent().append($img);
+                    setTimeout(function () {
+                        $img.removeClass('hidden');
+                    }, 1);
+                });
+
+                $('#exttypes .back').on('click', function() {
+                    if(idx === 0) {
+                        return;
+                    }
+
+                    $('#exttypes img:last-child').remove();
+                    idx--;
+                });
+            })();
+        </script>
+    </article>
+
+    <article id="wordcloud">
+    </article>
+    <article>
+        <h3>Available APIs</h3>
+        <ul class="build">
+            <li>Chrome<ul class="build">
+                <li>Tabs <span class="pink">&amp;</span> Windows</li>
+                <li>Bookmarks <span class="pink">&amp;</span> History</li>
+                <li>Extensions <span class="pink">&amp;</span> Settings</li>
+                <li>WebRequests</li>
+                <li><span class="pink">&hellip;</span></li>
+            </ul></li>
+            <li>HTML5 <small>&amp; friends</small><ul class="build">
+                <li>Web Workers</li>
+                <li>Geolocation</li>
+                <li>WebRTC</li>
+                <li><span class="pink">&hellip;</span></li>
+            </ul></li>
+        </ul>
+    </article>
+    <article>
+        <h3>Final comments</h3>
+        <ul class="build">
+            <li>Built with JS<span class="pink">,</span> CSS <span class="pink">&amp;</span> HTML</li>
+            <li>Hosting:<ul class="build"><li>Chrome Web Store</li><li>Own</li></ul></li>
+            <li>Resources:<ul class="build">
+                <li><a href="http://developer.chrome.com/extensions/index.html">Official docs</a> with sample extensions</li>
+                <li><a href="http://stackoverflow.com/questions/tagged/google-chrome-extension" class="post-tag user-tag" title="show questions tagged 'google-chrome-extension'" rel="tag" id="A_1"><img src="http://i.stack.imgur.com/dmHl0.png" height="16" width="18" alt="" class="sponsor-tag-img" id="IMG_2" />google-chrome-extension</a></li>
+                <li><a href="http://crbug.com">crbug.com</a> for bugs</li>
+            </ul></li>
+        </ul>
+    </article>
+    <article>
+        <h1>Workshop introduction <span class="pink">&raquo;</span></h1>
+    </article>
+    <article id="smog">
+        <a href="http://kubica.deviantart.com/art/Smog-over-Cracow-347813138">by Kubica</a>
+    </article>
+    <article id="smog1">
+        <a href="https://www.facebook.com/KrakowskiAlarmSmogowy">Krakowski Alarm Smogowy</a>
+    </article>
+    <article id="smog2">
+        <a href="http://www.malopolska.pl/powietrze">malopolska.pl</a>
+    </article>
+    <article id="smog3"></article>
+    <article>
+        <h3>Materials</h3>
+        <ul class="build">
+            <li class="center-dot"><a href="https://github.com/kdzwinel/ChromeExtensionsWorkshop/tree/master"><img src="resources/pusheencat.png" style="width: 300px"></a></li>
+            <li>switching steps</li>
+            <li>instructions structure</li>
+            <li>downloading files</li>
+        </ul>
+    </article>
+    <!-- Thank you slide -->
+    <article class='thank_you_slide'>
+        <h3>Contact &amp; Links</h3>
+        <br/>
+        <div class='contact_me'>
+            <span class="icon icon-pencil-alt"></span> <a href='mailto:kdzwinel@gmail.com'>kdzwinel@gmail.com</a><br/>
+            <span class="icon icon-github"></span> <a href='https://github.com/kdzwinel'>kdzwinel</a><br/>
+            <span class="icon icon-twitter"></span> <a href='https://twitter.com/kdzwinel'>@kdzwinel</a><br/>
+            <span class="icon icon-paper-clip"></span> <a href='http://goo.gl/your-short-url-to-this-presentation'>goo.gl/your-short-url-to-this-presentation</a></span>
+        </div>
+    </article>
+    <article>
+        <h1>Step <span class="pink">#</span>0</h1>
+        <h2>Manifest, browser button</h2>
+    </article>
+    <article>
+        <h3>Manifest file</h3>
+        <div class="build">
+        <pre>
+{
+    "manifest_version": 2,
+    "version": "1.5.2",
+    "name": "Test extension",
+    "description": "Extension description.",
+    "icons": {
+        "64": "img/icon_64.png"
+    }
+}</pre>
+        </div>
+        <ul class="build">
+            <li>Similar solutions: Firefox OS apps, node-webkit, Amazon Appstore etc.</li>
+            <li><a href="http://w3c.github.io/manifest/">W3C draft</a></li>
+            <li>Look out for <span class="pink">"</span> and <span class="pink">,</span></li>
+            <li><a href="http://developer.chrome.com/extensions/manifest.html">Docs</a></li>
+        </ul>
+    </article>
+    <article>
+        <h1>Step <span class="pink">#</span>0</h1>
+        <h2>Work in progress - <a href="https://github.com/kdzwinel/ChromeExtensionsWorkshop" style="text-decoration:none;letter-spacing: 1px;" class="pink">goo.gl/IWVuCZ</a></h2>
+    </article>
+    <article>
+        <h1>Step <span class="pink">#</span>1</h1>
+        <h2>Popup</h2>
+    </article>
+    <article>
+        <h3>Content Security Policy</h3>
+        <ul class="build">
+            <li>Inline JS not allowed
+                <pre>&lt;script&gt;alert('ok')&lt;/script&gt;</pre>
+                <pre>&lt;a href="#" onclick="myFunction()"&gt;</pre>
+            </li>
+            <li>Only local scripts <small>(*)</small>
+            <pre>&lt;script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"&gt;</pre></li>
+            <li>No evaluated JS <small>(*)</small>
+            <pre>eval('code;'); setTimeout('myFunction'); new Function('code;')</pre></li>
+        </ul>
+    </article>
+    <article>
+        <h3>SmogAlert API</h3>
+        <ul class="build">
+            <li><code>http://smogalert.pl/api</code> - make sure to give them credit!</li>
+            <li>List of stations - <code>(base_url)/stations</code>
+            <pre>[
+  {
+    "_id": "krakow-krasinskiego",
+    "city": "Kraków",
+    "address": "Kraków, Al.Krasińskiego",
+    "cityArea": "Centrum",
+    "location": {
+      "latitude": 50.0568,
+      "longitude": 19.92643
+    }
+  },
+...</pre></li>
+        </ul>
+    </article>
+    <article>
+        <h3>SmogAlert API</h3>
+        <ul>
+            <li>List of stations - <code>(base_url)/stats/(_id)</code>
+            <pre>
+{
+  "pollutants": [
+    {
+      "pollutant": "CO",
+      "concentration": "1h",
+      "value": 1770,
+      "norm": 10000,
+      "normPercent": 17.7
+    },
+    ...
+  ],
+  "city": "Kraków, Al. Krasińskiego",
+  "date": "2014-01-24 18:00:00",
+  "station_id": "krakow-krasinskiego"
+}</pre></li>
+        </ul>
+    </article>
+    <article>
+        <h1>Step <span class="pink">#</span>1</h1>
+        <h2>Work in progress <span class="pink">&hellip;</span></h2>
+    </article>
+    <article>
+        <h1>Step <span class="pink">#</span>2</h1>
+        <h2>Background page, storage and badges</h2>
+    </article>
+    <article>
+        <h3>Background page</h3>
+        <ul class="build">
+            <li>"Invisible tab"</li>
+            <li>No visual representation - only JS</li>
+            <li>Can communicate with other UI pages
+            <pre>
+//background.js
+var data = null;
+
+function getData() {/*...*/}
+
+setInterval(getData, 30 * 60 * 1000);//min
+
+//popup.js
+chrome.extension.getBackgroundPage().data;</pre></li>
+            <li>Persistent <span class="pink">!</span></li>
+        </ul>
+    </article>
+    <article>
+        <h3>Event page</h3>
+        <ul class="build">
+            <li>Wakes up only when needed</li>
+            <li>Otherwise similar to the background page</li>
+            <pre>
+//background.js
+var data = null;
+
+chrome.runtime.onInstalled.addListener(function(){
+    chrome.alarms.create("Get data", {periodInMinutes: 60});
+});
+chrome.alarms.onAlarm.addListener(updateData);
+
+//popup.js
+chrome.runtime.getBackgroundPage(function(bgwindow){
+    bgwindow.data;
+});</pre></li>
+        </ul>
+    </article>
+    <article>
+        <h3>Storage API</h3>
+        <ul class="build">
+            <li>Two types: <code>local</code> and <code>sync</code></li>
+            <li>Stores objects while <code>localStorage</code> only strings</li>
+            <li>Can ask for unlimited storage</li>
+            <li>Asynchronous<pre>
+var obj = {a: 'audi', b:'bugatti'};
+chrome.storage.local.set(obj, function(){});
+
+chrome.storage.local.get(function(data){
+    //{a: 'audi', b:'bugatti'}
+}});
+
+chrome.storage.local.get('a', function(data){
+    //'audi'
+});</pre></li>
+        </ul>
+    </article>
+    <article>
+        <h3>Permissions</h3>
+        <ul class="build">
+            <li><img src="resources/permissions.png" style="width: 500px"/></li>
+            <li>Array of permissions in the manifest file <pre>
+{
+...
+permissions: ["storage", "alerts"],
+...
+}</pre></li>
+            <li>Not all APIs require permissions</li>
+        </ul>
+    </article>
+    <article>
+        <h1>Step <span class="pink">#</span>2</h1>
+        <h2>Work in progress <span class="pink">&hellip;</span></h2>
+    </article>
+    <article>
+        <h1>Step <span class="pink">#</span>3</h1>
+        <h2>Notifications</h2>
+    </article>
+    <article>
+        <h3>Notifications</h3>
+        <ul class="build">
+            <li>HTML5 Notifications</li>
+            <li>Chrome Notifications</li>
+            <li>Inconsistent support (ATM)</li>
+        </ul>
+    </article>
+    <article>
+        <h1>Step <span class="pink">#</span>3</h1>
+        <h2>Work in progress <span class="pink">&hellip;</span></h2>
+    </article>
+    <article>
+        <h1>Step <span class="pink">#</span>4</h1>
+        <h2>Option pages</h2>
+    </article>
+    <article>
+        <h1>Step <span class="pink">#</span>4</h1>
+        <h2>Work in progress <span class="pink">&hellip;</span></h2>
+    </article>
+    <article>
+        <h1>Done <span class="pink">!</span></h1>
+    </article>
+</section>
+
+<script>
+    (function () {
+        //makes all links open in a separate tab/window
+        var allLinks = document.querySelectorAll('body a');
+        for (var i = 0, l = allLinks.length; i < l; i++) {
+            allLinks.item(i).setAttribute('target', '_blank');
+        }
+    })();
+</script>
+</body>
+</html>
